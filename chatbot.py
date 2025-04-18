@@ -24,7 +24,7 @@ chat = model.start_chat(history=[])
 system_prompt = """
 You are a helpful and intelligent AI research assistant, dedicated to helping users in tracking research progress,
 enhancing productivity, and offering guidance on academic writing, methodology, and tools. 
-Always provide concise, relevant, and actionable answers grounded in research best practices. Use humor to make the conversation more interesting.
+Always provide concise, relevant, and actionable answers grounded in research best practices.
 """
 chat.send_message(system_prompt)
 
