@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Research Assistant Chatbot</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-  <div class="sidebar">
-    <h2>📜 History</h2>
-    <div id="historyList"></div>
-  </div>
-  <div class="main">
-    <div class="container">
-      <div class="title">🧠 Research Assistant Chatbot</div>
-      <div class="chat-box" id="chatBox">
-        <div class="message assistant">Hello! Ask me anything about research.</div>
-      </div>
-      <div class="input-group">
-        <input type="text" id="userInput" placeholder="Ask a question..." />
-        <button onclick="sendMessage()">Send</button>
-      </div>
-    </div>
-  </div>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>ChatBot</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}" />
+ </head>
+ <body>
+   <div class="container">
+     <div class="welcome-text">
+       <h1>Hello there!</h1>
+       <p>How can I help you today?</p>
+     </div>
+ 
+     <!-- Chat messages area -->
+     <div class="chat-window" id="chat-window"></div>
+ 
+     <!-- Input area -->
+     <div class="chatbox">
+       <input type="text" id="userInput" placeholder="Send a message..." />
+       <button class="send-btn" onclick="sendMessage()">⏎</button>
+     </div>
+   </div>
+ 
   <script src="{{ url_for('static', filename='script.js')}}"></script>
-</body>
-</html>
+ </body>
+ </html>
