@@ -10,39 +10,55 @@
 		/>
 	</head>
 	<body>
-    <div class="container">
-      <div class="layout">
-        <!-- Sidebar -->
-        <div id="sidebar" class="sidebar hidden">
-          <div class="sidebar-header">
-            <h2>History</h2>
-            <button onclick="toggleSidebar()">✖</button>
-          </div>
-          <div class="history-list" id="historyList"></div>
-        </div>
-  
-        <!-- Main Content -->
-        <div class="main">
-          <div class="header">
-            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-            <div class="welcome-text">
-              <h1>Research Analyst Bot</h1>
-              <p>By Researchers, For Researchers</p>
-            </div>
-          </div>
-  
-          <!-- Chat messages area -->
-          <div class="chat-window" id="chat-window"></div>
-  
-          <!-- Input area -->
-          <div class="chatbox">
-            <input type="text" id="userInput" placeholder="Send a message..." />
-            <button class="send-btn" onclick="sendMessage()">⏎</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <script src="{{ url_for('static', filename='script.js')}}"></script>
-  </body>  
+		<!-- Welcome Overlay -->
+		<div class="welcome-overlay" id="welcomeOverlay">
+			<div class="welcome-center">
+				<h1>Research Analyst Bot</h1>
+				<p>By Researchers, For Researchers</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="layout">
+				<!-- Sidebar -->
+				<div id="sidebar" class="sidebar hidden">
+					<div class="sidebar-header">
+						<h2>History</h2>
+						<button onclick="toggleSidebar()">✖</button>
+					</div>
+					<div class="history-list" id="historyList"></div>
+				</div>
+
+				<!-- Main Content -->
+				<div class="main">
+					<div class="header">
+						<button class="menu-btn" onclick="toggleSidebar()">
+							☰
+						</button>
+						<div class="welcome-text">
+							<h1>Research Analyst Bot</h1>
+							<p>By Researchers, For Researchers</p>
+						</div>
+					</div>
+
+					<!-- Chat messages area -->
+					<div class="chat-window" id="chat-window"></div>
+
+					<!-- Input area -->
+					<div class="chatbox">
+						<input
+							type="text"
+							id="userInput"
+							placeholder="Send a message..."
+						/>
+						<button class="send-btn" onclick="sendMessage()">
+							⏎
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="{{ url_for('static', filename='script.js')}}"></script>
+	</body>
 </html>

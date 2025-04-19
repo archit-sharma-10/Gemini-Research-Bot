@@ -61,3 +61,16 @@ function toggleSidebar() {
 document.getElementById('userInput').addEventListener('keydown', function (e) {
 	if (e.key === 'Enter') sendMessage();
 });
+
+window.onload = () => {
+	const welcome = document.getElementById('welcomeOverlay');
+	const main = document.getElementById('mainContent');
+
+	setTimeout(() => {
+		welcome.style.opacity = '0';
+		setTimeout(() => {
+			welcome.style.display = 'none';
+			main.style.display = 'block';
+		}, 1000); // wait for fade-out
+	}, 3000); // how long to show welcome screen (in ms)
+};
