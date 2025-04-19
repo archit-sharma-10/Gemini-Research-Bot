@@ -71,6 +71,6 @@ window.onload = () => {
 		setTimeout(() => {
 			welcome.style.display = 'none';
 			main.style.display = 'block';
-		}, 1000); // wait for fade-out
-	}, 3000); // how long to show welcome screen (in ms)
+		}, 1000); 
+	}, 3000); 
 };
