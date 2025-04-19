@@ -1,4 +1,4 @@
-* {
+/* * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -18,7 +18,6 @@ body {
 	width: 100%;
 	max-width: 700px;
 	padding: 20px;
-	text-align: center;
 }
 
 .welcome-text h1 {
@@ -33,7 +32,6 @@ body {
 	margin-bottom: 2rem;
 }
 
-/* Suggestion Buttons */
 .suggestions {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -61,7 +59,6 @@ body {
 	background-color: #2a2a2a;
 }
 
-/* Chatbox */
 .chatbox {
 	display: flex;
 	align-items: center;
@@ -124,4 +121,196 @@ body {
 	align-self: flex-start;
 	background-color: #2e2e2e;
 	color: #ccc;
+} */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #121212;
+	color: white;
+	font-family: 'Segoe UI', sans-serif;
+	min-height: 100vh;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+/* Layout */
+.layout {
+	display: flex;
+	width: 100%;
+	height: 100vh;
+	position: relative;
+}
+
+.sidebar {
+	width: 250px;
+	background: linear-gradient(180deg, #bd2525, #191f94);
+	color: white;
+	padding: 20px;
+	overflow-y: auto;
+	transition: transform 0.3s ease;
+	border-right: 1px solid #333;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+}
+
+.sidebar.hidden {
+	transform: translateX(-100%);
+}
+
+.sidebar-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.sidebar-header button {
+	background: none;
+	border: none;
+	color: #aaa;
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+
+.history-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-height: calc(100vh - 100px);
+	overflow-y: auto;
+}
+
+.history-item {
+	background-color: #2a2a2a;
+	padding: 10px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.history-item:hover {
+	background-color: #333;
+}
+
+/* Main Chat Area */
+.main {
+	margin-left: 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	width: 100%;
+	margin-left: 250px;
+	transition: margin-left 0.3s ease;
+}
+
+.sidebar.hidden ~ .main {
+	margin-left: 0;
+}
+
+.header {
+	display: flex;
+	align-items: start;
+	justify-content: start;
+	margin-bottom: 1rem;
+}
+
+.menu-btn {
+	background: none;
+	border: none;
+	color: white;
+	font-size: 1.5rem;
+	cursor: pointer;
+	margin-right: 1rem;
+}
+
+.welcome-text h1 {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	background: linear-gradient(to right, #4facfe, #00f2fe);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.welcome-text p {
+	font-size: 1.1rem;
+	color: #aaa;
+}
+
+/* Chat Section */
+.chat-window {
+	flex: 1;
+	max-height: calc(100vh - 220px);
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-right: 5px;
+	margin-bottom: 20px;
+}
+
+.message {
+	padding: 10px 14px;
+	border-radius: 12px;
+	max-width: 80%;
+	line-height: 1.5;
+	word-wrap: break-word;
+}
+
+.user {
+	align-self: flex-end;
+	background-color: #2563eb;
+	color: white;
+}
+
+.bot {
+	align-self: flex-start;
+	background-color: #2e2e2e;
+	color: #ccc;
+}
+
+/* Chatbox */
+.chatbox {
+	display: flex;
+	align-items: center;
+	background-color: #1e1e1e;
+	border: 1px solid #444;
+	border-radius: 16px;
+	padding: 12px 16px;
+}
+
+.chatbox input {
+	flex: 1;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: white;
+	font-size: 1rem;
+}
+
+.chatbox input::placeholder {
+	color: #aaa;
+}
+
+.send-btn {
+	background: none;
+	border: none;
+	color: #aaa;
+	font-size: 1.2rem;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.send-btn:hover {
+	color: white;
 }
