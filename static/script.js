@@ -17,6 +17,7 @@ function sendMessage() {
 	const text = input.value.trim();
 	if (!text) return;
 
+	// Display user's message
 	const userMsg = document.createElement('div');
 	userMsg.className = 'message user';
 	userMsg.innerText = text;
@@ -25,6 +26,14 @@ function sendMessage() {
 
 	addHistoryItem(text);
 
+	// Show 'Typing...' immediately
+	const botMsg = document.createElement('div');
+	botMsg.className = 'message bot';
+	botMsg.innerText = '⌛ Typing...';
+	chatBox.appendChild(botMsg);
+	chatBox.scrollTop = chatBox.scrollHeight;
+
+	// Start fetching the response
 	fetch('/chat', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -32,17 +41,22 @@ function sendMessage() {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			const botMsg = document.createElement('div');
-			botMsg.className = 'message bot';
-			botMsg.innerText = data.response;
-			chatBox.appendChild(botMsg);
-			chatBox.scrollTop = chatBox.scrollHeight;
+			// Clear 'Typing...'
+			botMsg.innerText = '';
+
+			let i = 0;
+			function typeBotText() {
+				if (i < data.response.length) {
+					botMsg.textContent += data.response.charAt(i);
+					i++;
+					chatBox.scrollTop = chatBox.scrollHeight;
+					setTimeout(typeBotText, 20);
+				}
+			}
+			typeBotText();
 		})
 		.catch(() => {
-			const botMsg = document.createElement('div');
-			botMsg.className = 'message bot';
 			botMsg.innerText = '⚠️ Oops, something went wrong.';
-			chatBox.appendChild(botMsg);
 		});
 }
 
@@ -71,6 +85,6 @@ window.onload = () => {
 		setTimeout(() => {
 			welcome.style.display = 'none';
 			main.style.display = 'block';
-		}, 1000); 
-	}, 3000); 
+		}, 1000);
+	}, 3000);
 };
