@@ -235,3 +235,93 @@ body {
 		transform: translateY(0);
 	}
 }
+
+#loginDialog,
+#registerDialog {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: linear-gradient(to right, #4facfe, #00f2fe);
+	padding: 30px;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+	z-index: 1000;
+	width: 500px;
+	text-align: center;
+}
+
+#loginDialog input,
+#registerDialog input {
+	width: 90%;
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+#loginDialog button,
+#registerDialog button,
+button {
+	background-color: linear-gradient(to right, #5c47fb, #b151ff);
+	background-color: #06467f;
+	color: black;
+	text-decoration-color:linear-gradient(to right, rgb(76, 9, 107), #8700fe);
+	padding: 10px 20px;
+	margin-top: 10px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+#loginDialog button:hover,
+#registerDialog button:hover, 
+button:hover {
+	background-color: #2700b3;
+}
+
+#loginDialog a,
+#registerDialog a {
+	color: #3700ffa2;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+#loginDialog a:hover,
+#registerDialog a:hover {
+	text-decoration: underline;
+}
+.auth-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	color: #fff;
+}
+
+.auth-buttons {
+	display: flex;
+	gap: 20px;
+	margin-top: 10px;
+}
+
+.auth-buttons button {
+	background-color: #4c00ff;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	font-size: 16px;
+}
+
+.auth-buttons button:hover {
+	background-color: #0056b3;
+}
+
+
