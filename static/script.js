@@ -16,7 +16,7 @@ function sendMessage() {
 	const input = document.getElementById('userInput');
 	const text = input.value.trim();
 	if (!text) return;
-
+	
 	// Display user's message
 	const userMsg = document.createElement('div');
 	userMsg.className = 'message user';
@@ -41,19 +41,6 @@ function sendMessage() {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			// Clear 'Brainstorming...'
-			// botMsg.innerText = '';
-			// botMsg.innerHTML = `<img src="static/bot.png" alt="Bot" class="bot-icon">`;
-
-			// let i = 0;
-			// function typeBotText() {
-			// 	if (i < data.response.length) {
-			// 		botMsg.textContent += data.response.charAt(i);
-			// 		i++;
-			// 		chatBox.scrollTop = chatBox.scrollHeight;
-			// 		setTimeout(typeBotText, 20);
-			// 	}
-			// }
 			botMsg.innerHTML = `
 	<img src="/static/bot.png" alt="Bot" class="bot-icon">
 	<span class="bot-text"></span>

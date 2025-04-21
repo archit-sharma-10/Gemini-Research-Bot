@@ -121,7 +121,7 @@ body {
 	font-weight: bold;
 	margin-top: 20px;
 	margin-bottom: 0.5rem;
-	background: linear-gradient(to right, #4facfe, #00f2fe);
+	background: linear-gradient(177deg, white, grey);
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -368,7 +368,7 @@ button:hover {
 }
 
 .bot-icon {
-	width: 45px;
-	height: 45px;
-	margin-top: -10px;
+	width: 30px;
+	height: 30px;
+	margin-top: -5px;
 }
