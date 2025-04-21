@@ -110,6 +110,7 @@ body {
 	font-size: 1.5rem;
 	cursor: pointer;
 	margin-right: 1rem;
+	padding: 0px 5px 5px;
 }
 
 .menu-btn:hover {
@@ -117,18 +118,18 @@ body {
 }
 
 .welcome-text h1 {
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
 	margin-top: 20px;
 	margin-bottom: 0.5rem;
-	background: linear-gradient(177deg, white, grey);
+	background-color: white;
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
 .welcome-text p {
-	font-size: 1.1rem;
+	font-size: 10px;
 	color: #aaa;
 	text-align: center;
 }
@@ -142,9 +143,9 @@ body {
 	flex-direction: column;
 	gap: 10px;
 	padding: 20px;
-    margin: 0 auto 20px auto; /* center it horizontally */
-    width: 80%; /* adjust as needed (e.g., 60%, 700px, etc.) */
-    max-width: 800px; /* set a max width to keep it readable */
+    margin: 0 auto 20px auto; 
+    width: 80%; 
+    max-width: 800px; 
 }
 
 .message {
@@ -234,6 +235,7 @@ body {
 	font-weight: bold;
 	background: linear-gradient(to right, #4facfe, #00f2fe);
 	-webkit-background-clip: text;
+	background-clip: text;
 	-webkit-text-fill-color: transparent;
 	opacity: 0;
 	animation: fadeInMove 2s forwards;
