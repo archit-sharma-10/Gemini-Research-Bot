@@ -107,6 +107,10 @@ body {
 	margin-right: 1rem;
 }
 
+.menu-btn:hover {
+	background-color: #333;
+}
+
 .welcome-text h1 {
 	font-size: 30px;
 	font-weight: bold;
@@ -136,7 +140,7 @@ body {
 }
 
 .message {
-	padding: 10px 14px;
+	padding: 5px 10px;
 	border-radius: 12px;
 	max-width: 80%;
 	line-height: 1.5;
@@ -145,13 +149,12 @@ body {
 
 .user {
 	align-self: flex-end;
-	background-color: #2563eb;
-	color: white;
+	background-color: white;
+	color: black;
 }
 
 .bot {
 	align-self: flex-start;
-	background-color: #2e2e2e;
 	color: #ccc;
 }
 
