@@ -5,7 +5,7 @@
 }
 
 body {
-	background-color: #121212;
+	background-color: black !important;
 	color: white;
 	font-family: 'Segoe UI', sans-serif;
 	min-height: 100vh;
@@ -55,6 +55,10 @@ body {
 	cursor: pointer;
 }
 
+.sidebar-header button:hover {
+	background-color: #333;
+}
+
 .history-list {
 	display: flex;
 	flex-direction: column;
@@ -96,6 +100,7 @@ body {
 	align-items: start;
 	justify-content: space-between;
 	margin-bottom: 1rem;
+	margin-top: -25px;
 }
 
 .menu-btn {
@@ -114,6 +119,7 @@ body {
 .welcome-text h1 {
 	font-size: 30px;
 	font-weight: bold;
+	margin-top: 20px;
 	margin-bottom: 0.5rem;
 	background: linear-gradient(to right, #4facfe, #00f2fe);
 	-webkit-background-clip: text;
@@ -135,8 +141,10 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	padding-right: 5px;
-	margin-bottom: 20px;
+	padding: 20px;
+    margin: 0 auto 20px auto; /* center it horizontally */
+    width: 80%; /* adjust as needed (e.g., 60%, 700px, etc.) */
+    max-width: 800px; /* set a max width to keep it readable */
 }
 
 .message {
@@ -145,6 +153,7 @@ body {
 	max-width: 80%;
 	line-height: 1.5;
 	word-wrap: break-word;
+	font-size: 15px;
 }
 
 .user {
@@ -163,9 +172,17 @@ body {
 	display: flex;
 	align-items: center;
 	background-color: #1e1e1e;
-	border: 1px solid #444;
+	border: 1px solid black;
 	border-radius: 16px;
 	padding: 5px;
+	margin: 0 auto;
+	width: 80%;
+	max-width: 750px;
+	transition: border-color 0.3s ease;
+}
+
+.chatbox:focus-within {
+	border-color: white;
 }
 
 .chatbox input {
@@ -174,7 +191,7 @@ body {
 	border: none;
 	outline: none;
 	color: white;
-	font-size: 1rem;
+	font-size: 15px;
 	padding-left: 10px;
 }
 
@@ -330,7 +347,9 @@ button:hover {
 }
 
 .logout-btn {
-	background-color: black;
+	background-color: white;
+	padding: 5px 10px 5px;
+	margin-top: 15px;
 }
 
 .logout-btn:hover {
@@ -338,7 +357,18 @@ button:hover {
 }
 
 #logout-link {
-	color: white !important;
+	color: black !important;
 	text-decoration-line: none;
 	font-size: 15px;
+}
+.message.bot {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.bot-icon {
+	width: 45px;
+	height: 45px;
+	margin-top: -10px;
 }

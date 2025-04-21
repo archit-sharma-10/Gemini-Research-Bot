@@ -42,12 +42,28 @@ function sendMessage() {
 		.then((res) => res.json())
 		.then((data) => {
 			// Clear 'Brainstorming...'
-			botMsg.innerText = '';
+			// botMsg.innerText = '';
+			// botMsg.innerHTML = `<img src="static/bot.png" alt="Bot" class="bot-icon">`;
+
+			// let i = 0;
+			// function typeBotText() {
+			// 	if (i < data.response.length) {
+			// 		botMsg.textContent += data.response.charAt(i);
+			// 		i++;
+			// 		chatBox.scrollTop = chatBox.scrollHeight;
+			// 		setTimeout(typeBotText, 20);
+			// 	}
+			// }
+			botMsg.innerHTML = `
+	<img src="/static/bot.png" alt="Bot" class="bot-icon">
+	<span class="bot-text"></span>
+`;
+			const botTextSpan = botMsg.querySelector('.bot-text');
 
 			let i = 0;
 			function typeBotText() {
 				if (i < data.response.length) {
-					botMsg.textContent += data.response.charAt(i);
+					botTextSpan.textContent += data.response.charAt(i);
 					i++;
 					chatBox.scrollTop = chatBox.scrollHeight;
 					setTimeout(typeBotText, 20);
