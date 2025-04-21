@@ -137,7 +137,7 @@ body {
 /* Chat Section */
 .chat-window {
 	flex: 1;
-	max-height: calc(100vh - 220px);
+	max-height: calc(100vh - 20px);
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
@@ -175,7 +175,6 @@ body {
 	background-color: #1e1e1e;
 	border: 1px solid black;
 	border-radius: 16px;
-	padding: 5px;
 	margin: 0 auto;
 	width: 80%;
 	max-width: 750px;
