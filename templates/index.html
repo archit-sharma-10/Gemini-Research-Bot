@@ -1,132 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>ChatBot</title>
-		<link
-			rel="stylesheet"
-			href="{{ url_for('static', filename='styles.css')}}"
-		/>
-	</head>
-	<body>
-		
-		{% if user %}
-			<!-- <p>Welcome, {{ user }}! <a href="/logout">Logout</a></p> -->
-			<!-- Welcome Overlay -->
-		<div class="welcome-overlay" id="welcomeOverlay">
-			<div class="welcome-center">
-				<h1>Research Analyst Bot</h1>
-				<p>By Researchers, For Researchers</p>
-			</div>
-		</div>
-			<div class="container">
-				<div class="layout">
-					<!-- Sidebar -->
-					<div id="sidebar" class="sidebar hidden">
-						<div class="sidebar-header">
-							<h2>History</h2>
-							<button onclick="toggleSidebar()">✖</button>
-						</div>
-						<div class="history-list" id="historyList"></div>
-					</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatBot</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css')}}"
+    />
+  </head>
+  <body>
+    {% if user %}
+      <!-- Welcome Overlay -->
+      <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-center">
+          <h1>Research Analyst Bot</h1>
+          <p>By Researchers, For Researchers</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="layout">
+          <!-- Sidebar -->
+          <div id="sidebar" class="sidebar hidden">
+            <div class="sidebar-header">
+              <h2>History</h2>
+              <button onclick="toggleSidebar()">✖</button>
+            </div>
+            <div class="history-list" id="historyList"></div>
+          </div>
 
-					<!-- Main Content -->
-					<div class="main">
-						<div class="header">
-							<button class="menu-btn" onclick="toggleSidebar()">
-								☰
-							</button>
-							<div class="welcome-text">
-								<h1>Research Analyst Bot</h1>
-								<p>By Researchers, For Researchers</p>
-							</div>
-							<!-- <p>Welcome, {{ user }}! <a href="/logout">Logout</a></p> -->
-							<button class="logout-btn"><a href="/logout"  id="logout-link">Logout</a></button>
-						</div>
+          <!-- Main Content -->
+          <div class="main">
+            <div class="header">
+              <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+              <div class="welcome-text">
+                <h1>Research Analyst Bot</h1>
+                <p>By Researchers, For Researchers</p>
+              </div>
+              <button class="logout-btn"><a href="/logout" id="logout-link">Logout</a></button>
+            </div>
 
-						<!-- Chat messages area -->
-						<div class="chat-window" id="chat-window"></div>
+            <!-- Chat messages area -->
+            <div class="chat-window" id="chat-window"></div>
 
-						<!-- Input area -->
-						<div class="chatbox">
-							<input
-								type="text"
-								id="userInput"
-								placeholder="Send a message..."
-							/>
-							<button class="send-btn" onclick="sendMessage()">
-								⏎
-							</button>
-					    </div>
-					</div>
-				</div>
-			</div>
+            <!-- Input area -->
+            <div class="chatbox">
+              <input
+                type="text"
+                id="userInput"
+                placeholder="Send a message..."
+              />
+              <button class="send-btn" onclick="sendMessage()">⏎</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-		{% else %}
-		<div class="auth-wrapper">
-			<div class="welcome-text">
-				<h1>Research Analyst Bot</h1>
-				<p style="text-align: center; padding-bottom: 5px;">By Researchers, For Researchers</p>
-			</div>
-			<p style="font-style: italic; font-weight: bold; color: aqua;">You are not logged in.</p>
-			<div class="auth-buttons">
-				<button onclick="toggleForms('login')">Login</button>
-				<button onclick="showRegister()">Register</button>
-			</div>
-		</div>		
-			<!-- Login dailog box-->
-			<div id="loginDialog" style="display:none;">
-				<form method="POST" action="/login">
-					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-					<label for="username">Username:</label>
-					<input type="text" name="username" placeholder="Username" required><br>
-					<label for="password">Password:</label>
-					<input type="password" name="password" placeholder="Password" required><br>
-					<button type="submit">Login</button>
-				</form>
-				<p>Don't have an account? <a href="#" onclick="toggleForms('register')">Register here</a></p>
-			</div>
+    {% else %}
+      <div class="auth-wrapper">
+        <div class="welcome-text">
+          <h1>Research Analyst Bot</h1>
+          <p style="text-align: center; padding-bottom: 5px;">By Researchers, For Researchers</p>
+        </div>
+        <p style="font-style: italic; font-weight: bold; color: aqua;">You are not logged in.</p>
+        <div class="auth-buttons">
+          <button onclick="toggleForms('login')">Login</button>
+          <button onclick="showRegister()">Register</button>
+        </div>
+      </div>    
 
-			<!-- Registration Dialog Box -->
-			<div id="registerDialog" style="display:none;">
-				<form method="POST" action="/register">
-					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-					<label for="username">Username:</label>
-					<input type="text" name="username" placeholder="New Username" required><br>
-					<label for="password">Password:</label>
-					<input type="password" name="password" placeholder="New Password" required><br>
-					<button type="submit">Register</button>
-				</form>
-				<p>Already have an account? <a href="#" onclick="toggleForms('login')">Login here</a></p>
-			</div>
-			
-		{% endif %}
-		<script src="{{ url_for('static', filename='script.js')}}"></script>
-		<script>
-			// This will hide the welcome overlay after 2 seconds
-			window.onload = function () {
-				setTimeout(function () {
-					document.getElementById("welcomeOverlay").style.display = "none";
-				}, 2000);
-			};
-		</script>
-		<script>
-			function toggleForms(formType) {
-				const login = document.getElementById('loginDialog');
-				const register = document.getElementById('registerDialog');
-		
-				if (formType === 'login') {
-					login.style.display = 'block';
-					register.style.display = 'none';
-				} else {
-					login.style.display = 'none';
-					register.style.display = 'block';
-				}
-			}
-			function showRegister(){
-				toggleForms('register');
-			}
-		</script>					
-	</body>
+      <!-- Login dialog box-->
+      <div id="loginDialog" style="display:none;">
+        <form method="POST" action="/login">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <label for="username">Username:</label>
+          <input type="text" name="username" placeholder="Username" required><br>
+          <label for="password">Password:</label>
+          <input type="password" name="password" placeholder="Password" required><br>
+          <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" onclick="toggleForms('register')">Register here</a></p>
+      </div>
+
+      <!-- Registration Dialog Box -->
+      <div id="registerDialog" style="display:none;">
+        <form method="POST" action="/register">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <label for="username">Username:</label>
+          <input type="text" name="username" placeholder="New Username" required><br>
+          <label for="password">Password:</label>
+          <input type="password" name="password" placeholder="New Password" required><br>
+          <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="#" onclick="toggleForms('login')">Login here</a></p>
+      </div>
+      
+    {% endif %}
+    <script src="{{ url_for('static', filename='script.js')}}"></script>
+    <script>
+      // This will hide the welcome overlay after 2 seconds
+      window.onload = function () {
+        setTimeout(function () {
+          document.getElementById("welcomeOverlay").style.display = "none";
+        }, 2000);
+        
+        {% if user %}
+          // Send "Greetings" message to the bot
+          sendMessage("Greetings");
+        {% endif %}
+      };
+    </script>
+    <script>
+      function toggleForms(formType) {
+        const login = document.getElementById('loginDialog');
+        const register = document.getElementById('registerDialog');
+    
+        if (formType === 'login') {
+          login.style.display = 'block';
+          register.style.display = 'none';
+        } else {
+          login.style.display = 'none';
+          register.style.display = 'block';
+        }
+      }
+
+      function showRegister(){
+        toggleForms('register');
+      }
+    </script>					
+  </body>
 </html>

@@ -10,7 +10,7 @@ import google.generativeai as genai
 app = Flask(__name__)
 load_dotenv()  # Load environment variables from .env file
 app.secret_key = 'supersecret'
-csrf=   CSRFProtect(app)
+csrf = CSRFProtect(app)
 
 USERS_FILE = 'users.json'
 def load_users():
@@ -24,7 +24,7 @@ def save_users(users_dict):
     with open(USERS_FILE, 'w') as f:
         json.dump(users_dict, f)
 
-users= load_users()
+users = load_users()
 print("Loaded users: ", list(users.keys()))
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -58,14 +58,14 @@ def index():
 
 @app.route('/login', methods=['POST']) 
 def login():
-    username= request.form['username']
-    password= request.form['password']
+    username = request.form['username']
+    password = request.form['password']
 
-    users= load_users()
-    user_hash= users.get(username)
+    users = load_users()
+    user_hash = users.get(username)
 
     if user_hash and check_password_hash(user_hash, password):
-        session['user']= username
+        session['user'] = username
         print("Logged in as:", session['user'])
         return redirect(url_for('index'))
     else:
@@ -74,14 +74,14 @@ def login():
 
 @app.route("/register", methods=["POST"])
 def register():
-    users= load_users()
-    username= request.form['username']
-    password= request.form['password']
+    users = load_users()
+    username = request.form['username']
+    password = request.form['password']
 
     if username in users:
         flash("Username already exists!")
         return redirect(url_for("index"))
-    users[username]= generate_password_hash(password)
+    users[username] = generate_password_hash(password)
     save_users(users)
 
     flash("Registered successfully! Please login.")

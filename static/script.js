@@ -2,21 +2,21 @@ const chatBox = document.getElementById('chat-window');
 const historyList = document.getElementById('historyList');
 
 function addHistoryItem(text) {
-	const item = document.createElement('div');
-	item.className = 'history-item';
-	item.innerText = text;
-	item.onclick = () => {
-		document.getElementById('userInput').value = text;
-		sendMessage();
-	};
-	historyList.appendChild(item);
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    item.innerText = text;
+    item.onclick = () => {
+        document.getElementById('userInput').value = text;
+        sendMessage();
+    };
+    historyList.appendChild(item);
 }
 
 function sendMessage() {
 	const input = document.getElementById('userInput');
 	const text = input.value.trim();
 	if (!text) return;
-	
+
 	// Display user's message
 	const userMsg = document.createElement('div');
 	userMsg.className = 'message user';
@@ -24,14 +24,14 @@ function sendMessage() {
 	chatBox.appendChild(userMsg);
 	input.value = '';
 
-	addHistoryItem(text);
+    addHistoryItem(text);
 
-	// Show 'Brainstorming...' immediately
-	const botMsg = document.createElement('div');
-	botMsg.className = 'message bot';
-	botMsg.innerText = '⌛ Brainstorming...';
-	chatBox.appendChild(botMsg);
-	chatBox.scrollTop = chatBox.scrollHeight;
+    // Show 'Brainstorming...' immediately
+    const botMsg = document.createElement('div');
+    botMsg.className = 'message bot';
+    botMsg.innerText = '⌛ Brainstorming...';
+    chatBox.appendChild(botMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
 
 	// Start fetching the response
 	fetch('/chat', {
@@ -41,16 +41,13 @@ function sendMessage() {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			botMsg.innerHTML = `
-	<img src="/static/bot.png" alt="Bot" class="bot-icon">
-	<span class="bot-text"></span>
-`;
-			const botTextSpan = botMsg.querySelector('.bot-text');
+			// Clear 'Brainstorming...'
+			botMsg.innerText = '';
 
 			let i = 0;
 			function typeBotText() {
 				if (i < data.response.length) {
-					botTextSpan.textContent += data.response.charAt(i);
+					botMsg.textContent += data.response.charAt(i);
 					i++;
 					chatBox.scrollTop = chatBox.scrollHeight;
 					setTimeout(typeBotText, 20);
@@ -63,31 +60,23 @@ function sendMessage() {
 		});
 }
 
-function toggleSidebar() {
-	const sidebar = document.getElementById('sidebar');
-	sidebar.classList.toggle('hidden');
-
-	const main = document.querySelector('.main');
-	if (sidebar.classList.contains('hidden')) {
-		main.style.marginLeft = '0';
-	} else {
-		main.style.marginLeft = '250px';
-	}
-}
-
+// Event listener for the Enter key
 document.getElementById('userInput').addEventListener('keydown', function (e) {
-	if (e.key === 'Enter') sendMessage();
+    if (e.key === 'Enter') {
+        sendMessage();  // Call sendMessage when Enter is pressed
+    }
 });
 
 window.onload = () => {
-	const welcome = document.getElementById('welcomeOverlay');
-	const main = document.getElementById('mainContent');
+    const welcome = document.getElementById('welcomeOverlay');
+    const main = document.getElementById('mainContent');
 
-	setTimeout(() => {
-		welcome.style.opacity = '0';
-		setTimeout(() => {
-			welcome.style.display = 'none';
-			main.style.display = 'block';
-		}, 1000);
-	}, 3000);
+    setTimeout(() => {
+        welcome.style.opacity = '0';
+        setTimeout(() => {
+            welcome.style.display = 'none';
+            main.style.display = 'block';
+        }, 1000);
+    }, 3000);
+
 };
