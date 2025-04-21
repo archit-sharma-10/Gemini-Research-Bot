@@ -26,10 +26,10 @@ function sendMessage() {
 
 	addHistoryItem(text);
 
-	// Show 'Typing...' immediately
+	// Show 'Brainstorming...' immediately
 	const botMsg = document.createElement('div');
 	botMsg.className = 'message bot';
-	botMsg.innerText = '⌛ Typing...';
+	botMsg.innerText = '⌛ Brainstorming...';
 	chatBox.appendChild(botMsg);
 	chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -41,7 +41,7 @@ function sendMessage() {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			// Clear 'Typing...'
+			// Clear 'Brainstorming...'
 			botMsg.innerText = '';
 
 			let i = 0;

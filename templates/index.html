@@ -12,7 +12,7 @@
 	<body>
 		
 		{% if user %}
-			<p>Welcome, {{ user }}! <a href="/logout">Logout</a></p>
+			<!-- <p>Welcome, {{ user }}! <a href="/logout">Logout</a></p> -->
 			<!-- Welcome Overlay -->
 		<div class="welcome-overlay" id="welcomeOverlay">
 			<div class="welcome-center">
@@ -41,6 +41,8 @@
 								<h1>Research Analyst Bot</h1>
 								<p>By Researchers, For Researchers</p>
 							</div>
+							<!-- <p>Welcome, {{ user }}! <a href="/logout">Logout</a></p> -->
+							<button class="logout-btn"><a href="/logout"  id="logout-link">Logout</a></button>
 						</div>
 
 						<!-- Chat messages area -->
@@ -63,7 +65,11 @@
 
 		{% else %}
 		<div class="auth-wrapper">
-			<p style="font-size: xx-large; font-style: italic; font-weight: bold; color: aqua;">You are not logged in.</p>
+			<div class="welcome-text">
+				<h1>Research Analyst Bot</h1>
+				<p style="text-align: center; padding-bottom: 5px;">By Researchers, For Researchers</p>
+			</div>
+			<p style="font-style: italic; font-weight: bold; color: aqua;">You are not logged in.</p>
 			<div class="auth-buttons">
 				<button onclick="toggleForms('login')">Login</button>
 				<button onclick="showRegister()">Register</button>
