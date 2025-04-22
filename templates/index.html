@@ -10,7 +10,7 @@
 		/>
 	</head>
 	<body>
-		
+		<canvas id="particleCanvas"></canvas>
 		{% if user %}
 			<!-- <p>Welcome, {{ user }}! <a href="/logout">Logout</a></p> -->
 			<!-- Welcome Overlay -->
@@ -64,7 +64,18 @@
 			</div>
 
 		{% else %}
-		<div class="auth-wrapper">
+		<!-- Research-themed animated background -->
+			<div class="research-bg" id="researchBG">
+				{% for i in range(40) %}
+					<div class="research-particle" style="
+					left: {{ (i * 2.3) % 100 }}vw;
+					top: {{ (i * 4.7) % 100 }}vh;
+					animation-delay: {{ (i * 0.5) % 5 }}s;
+					animation-duration: {{ 7 + (i % 5) }}s;"></div>
+				{% endfor %}
+			</div>
+
+		<div class="auth-wrapper" style="background: transparent; border: none;">
 			<div class="welcome-text">
 				<h1>Research Analyst Bot</h1>
 				<p style="text-align: center; padding-bottom: 5px;">By Researchers, For Researchers</p>
@@ -111,10 +122,11 @@
 				}, 2000);
 			};
 		</script>
-		<script>
+		<<script>
 			function toggleForms(formType) {
 				const login = document.getElementById('loginDialog');
 				const register = document.getElementById('registerDialog');
+				const wrapper = document.querySelector('.auth-wrapper');
 		
 				if (formType === 'login') {
 					login.style.display = 'block';
@@ -123,10 +135,15 @@
 					login.style.display = 'none';
 					register.style.display = 'block';
 				}
+		
+				// Hide the welcome text and login/register buttons
+				if (wrapper) wrapper.style.display = 'none';
 			}
+		
 			function showRegister(){
 				toggleForms('register');
 			}
+<<<<<<< Updated upstream
       document.addEventListener("DOMContentLoaded", function () {
       // Delay a little to let the welcome overlay clear out
         setTimeout(() => {
@@ -139,5 +156,57 @@
         }, 3500); // Wait for the welcome overlay to fade (3s + 0.5s buffer)
       });
 		</script>					
+=======
+		</script>			
+		<script>
+			const canvas = document.getElementById("particleCanvas");
+			const ctx = canvas.getContext("2d");
+		  
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+		  
+			let particles = [];
+			const numParticles = 100;
+		  
+			for (let i = 0; i < numParticles; i++) {
+			  particles.push({
+				x: Math.random() * canvas.width,
+				y: Math.random() * canvas.height,
+				vx: (Math.random() - 0.5) * 1.5,
+				vy: (Math.random() - 0.5) * 1.5,
+				radius: Math.random() * 1.2 + 0.3
+			  });
+			}
+		  
+			function draw() {
+			  ctx.clearRect(0, 0, canvas.width, canvas.height);
+		  
+			  for (let p of particles) {
+				ctx.beginPath();
+				ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+				ctx.fillStyle = "#0ff"; // glowing blue
+				ctx.shadowColor = "#0ff";
+				ctx.shadowBlur = 10;
+				ctx.fill();
+		  
+				p.x += p.vx;
+				p.y += p.vy;
+		  
+				// bounce off edges
+				if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+				if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+			  }
+		  
+			  requestAnimationFrame(draw);
+			}
+		  
+			draw();
+		  
+			window.addEventListener("resize", () => {
+			  canvas.width = window.innerWidth;
+			  canvas.height = window.innerHeight;
+			});
+		  </script>						  
+>>>>>>> Stashed changes
 	</body>
 </html>
